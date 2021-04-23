@@ -1,0 +1,26 @@
+{
+    "name": "lackone/laravel-gateway-worker",
+    "description": "GatewayWorker for laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "lackone",
+            "email": "lackone@126.com"
+        }
+    ],
+    "require": {
+        "workerman/gateway-worker": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lackone\\LaravelGatewayWorker\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lackone\\LaravelGatewayWorker\\Providers\\GatewayWorkerServiceProvider"
+            ]
+        }
+    }
+}
