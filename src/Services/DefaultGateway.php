@@ -25,6 +25,14 @@ class DefaultGateway extends Base
         $gateway->onClose = [$this, 'onClose'];
 
         if (!defined('GLOBAL_START')) {
+            $pid_file = $this->config('gateway.pid_file');
+            $log_file = $this->config('gateway.log_file');
+            $stdout_file = $this->config('gateway.stdout_file');
+
+            $pid_file && Worker::$pidFile = $pid_file;
+            $log_file && Worker::$logFile = $log_file;
+            $stdout_file && Worker::$stdoutFile = $stdout_file;
+
             Worker::runAll();
         }
     }

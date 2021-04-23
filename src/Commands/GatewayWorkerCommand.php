@@ -62,17 +62,17 @@ class GatewayWorkerCommand extends Command
         if ($server == 'all') {
             define('GLOBAL_START', 1);
             $server_list = ['worker', 'gateway', 'register'];
+
+            $pid_file = config("gw.{$service_name}.pid_file");
+            $log_file = config("gw.{$service_name}.log_file");
+            $stdout_file = config("gw.{$service_name}.stdout_file");
+
+            $pid_file && Worker::$pidFile = $pid_file;
+            $log_file && Worker::$logFile = $log_file;
+            $stdout_file && Worker::$stdoutFile = $stdout_file;
         } else {
             $server_list[] = $server;
         }
-
-        $pid_file = config("gw.{$service_name}.pid_file");
-        $log_file = config("gw.{$service_name}.log_file");
-        $stdout_file = config("gw.{$service_name}.stdout_file");
-
-        $pid_file && Worker::$pidFile = $pid_file;
-        $log_file && Worker::$logFile = $log_file;
-        $stdout_file && Worker::$stdoutFile = $stdout_file;
 
         foreach ($server_list as $value) {
             $class = config("gw.{$service_name}.{$value}.handler");

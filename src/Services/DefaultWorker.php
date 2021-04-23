@@ -21,6 +21,14 @@ class DefaultWorker extends Base
         $worker->onWorkerStop = [$this, 'onWorkerStop'];
 
         if (!defined('GLOBAL_START')) {
+            $pid_file = $this->config('worker.pid_file');
+            $log_file = $this->config('worker.log_file');
+            $stdout_file = $this->config('worker.stdout_file');
+
+            $pid_file && Worker::$pidFile = $pid_file;
+            $log_file && Worker::$logFile = $log_file;
+            $stdout_file && Worker::$stdoutFile = $stdout_file;
+
             Worker::runAll();
         }
     }

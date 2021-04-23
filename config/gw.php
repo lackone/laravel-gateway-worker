@@ -19,6 +19,10 @@ return [
             //如果设置了这个命名空间，则通过反射，调用onMessage中type指定的类方法
             //主要的目的是为了方便代码管理，后期扩展
             'event_namespace' => 'App\\Services',
+
+            'pid_file' => storage_path('logs/worker_pid.log'),
+            'log_file' => storage_path('logs/worker_log.log'),
+            'stdout_file' => storage_path('logs/worker_stdout_file.log'),
         ],
 
         //gateway进程负责维持客户端连接，并转发客户端的数据给worker进程处理
@@ -40,6 +44,10 @@ return [
                 //    'verify_peer' => false,
                 //],
             ],
+
+            'pid_file' => storage_path('logs/gateway_pid.log'),
+            'log_file' => storage_path('logs/gateway_log.log'),
+            'stdout_file' => storage_path('logs/gateway_stdout_file.log'),
         ],
 
         //register用于协调集群内部gateway与worker的通信
@@ -48,6 +56,10 @@ return [
             'name' => 'register',
             //register只能定制监听的ip和端口，并且目前只能使用text协议
             'url' => 'text://0.0.0.0:10001',
+
+            'pid_file' => storage_path('logs/register_pid.log'),
+            'log_file' => storage_path('logs/register_log.log'),
+            'stdout_file' => storage_path('logs/register_stdout_file.log'),
         ],
     ],
 ];
